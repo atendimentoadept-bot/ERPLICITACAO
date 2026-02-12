@@ -421,7 +421,7 @@ elif pagina == "Consultar Pessoa":
 
 # --- 7. TELA DE PEDIDOS (VERSÃO FINAL COM DESCONTO/ACRÉSCIMO E FRETE) ---
 elif pagina == "Criar Pedido":
-    st.title("🛒 Central de Pedidos")
+    st.title("Central de Pedidos")
 
     # --- INICIALIZAÇÃO DE ESTADOS ---
     if "carrinho" not in st.session_state:
@@ -491,7 +491,7 @@ elif pagina == "Criar Pedido":
             st.text_input("Cliente (Selecione na busca)", value=doc_exibicao, disabled=True)
         with col_cli_2:
             st.write("##")
-            if st.button("🔍 Buscar Cliente", use_container_width=True):
+            if st.button("Buscar Cliente", use_container_width=True):
                 buscar_cliente_pop()
 
         if st.session_state.cliente_selecionado:
@@ -500,7 +500,7 @@ elif pagina == "Criar Pedido":
 
     # --- ÁREA 2: INCLUSÃO DE PRODUTOS ---
     with st.container(border=True):
-        st.write("### 📦 Adicionar Itens")
+        st.write("### Adicionar Itens")
         col_prod_1, col_prod_2, col_prod_3 = st.columns([2, 1, 1])
         
         with col_prod_1:
@@ -508,7 +508,7 @@ elif pagina == "Criar Pedido":
             st.text_input("SKU (Selecione na busca)", value=sku_exibicao, disabled=True)
         with col_prod_2:
             st.write("##")
-            if st.button("🔍 Buscar Produto", use_container_width=True):
+            if st.button("Buscar Produto", use_container_width=True):
                 buscar_produto_pop()
         with col_prod_3:
             qtd = st.number_input("Quantidade", min_value=1, value=1)
@@ -573,7 +573,7 @@ elif pagina == "Criar Pedido":
                 total_final = subtotal_itens + frete
                 st.metric("TOTAL GERAL", f"R$ {total_final:.2f}")
 
-            if st.form_submit_button("✅ CONFIRMAR E SALVAR", use_container_width=True):
+            if st.form_submit_button("CONFIRMAR E SALVAR", use_container_width=True):
                 if not st.session_state.cliente_selecionado:
                     st.error("Selecione um cliente!")
                 else:
@@ -603,7 +603,7 @@ elif pagina == "Criar Pedido":
 
 # --- 8. TELA DE CONSULTA DE PEDIDOS (VERSÃO COMPLETA COM FRETE) ---
 elif pagina == "Consultar Pedido":
-    st.title("🔎 Gestão e Consulta de Pedidos")
+    st.title("Gestão e Consulta de Pedidos")
 
     # 1. Carregamento e Padronização de Dados
     try:
@@ -698,8 +698,8 @@ elif pagina == "Consultar Pedido":
                 # Informações do Cliente e Pedido
                 c1, c2 = st.columns([2, 1])
                 with c1:
-                    st.markdown(f"### 👤 {itens_pedido.iloc[0]['nome_cliente']}")
-                    st.caption(f"📍 {endereco_completo} | 🏷️ {cat_cli}")
+                    st.markdown(f"###{itens_pedido.iloc[0]['nome_cliente']}")
+                    st.caption(f"{endereco_completo} | {cat_cli}")
                 with c2:
                     st.markdown(f"**Data:** {itens_pedido.iloc[0]['data_pedido']}")
                     st.markdown(f"**Tipo:** `{itens_pedido.iloc[0]['tipo']}`")
@@ -734,4 +734,5 @@ elif pagina == "Consultar Pedido":
             if str(itens_pedido.iloc[0]['observacao']) != 'nan':
                 st.info(f"**Observações:** {itens_pedido.iloc[0]['observacao']}")
         else:
+
             st.info("Selecione um pedido à esquerda para ver os detalhes.")
